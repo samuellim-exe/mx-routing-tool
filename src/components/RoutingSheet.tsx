@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "./ui/select";
@@ -26,7 +26,7 @@ const RoutingSheet = () => {
   }, [initialChannels]);
 
   const handleInputChange = (index: number, field: string, value: string) => {
-    setChannels(prevChannels => {
+    setChannels((prevChannels: { name: string; inputType: string; inputNumber: string }[]) => {
       const newChannels = [...prevChannels];
       newChannels[index] = { ...newChannels[index], [field]: value };
       localStorage.setItem("channels", JSON.stringify(newChannels));
@@ -36,7 +36,7 @@ const RoutingSheet = () => {
 
   const exportToCSV = () => {
     const csvContent = "data:text/csv;charset=utf-8," + 
-      channels.map(channel => `${channel.name},${channel.inputType} ${channel.inputNumber}`).join("\n");
+      channels.map((channel: { name: string; inputType: string; inputNumber: string }) => `${channel.name},${channel.inputType} ${channel.inputNumber}`).join("\n");
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
@@ -75,7 +75,7 @@ const RoutingSheet = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {channels.map((channel, index) => (
+          {channels.map((channel: { name: string; inputType: string; inputNumber: string }, index: number) => (
             <TableRow key={index}>
               <TableCell>
                 <Input
