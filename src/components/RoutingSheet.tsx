@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "./ui/select";
 import {
   Table,
@@ -9,7 +9,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "./ui/table";
+} from "@/components/ui/table";
 
 const RoutingSheet = () => {
   const initialChannels = Array.from({ length: 32 }, (_, i) => ({ name: `Channel ${i + 1}`, inputType: "Local In", inputNumber: `${i + 1}` }));
